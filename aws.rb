@@ -10,3 +10,10 @@ def create_bucket(name)
 		resque AWS::S3::Errors::BucketAlreadyExists
 	end
 end
+
+def show_menu
+	puts '(l)ist buckets, (c)reate bucket, (u)pload file, (d)ownload file, (q)uit'
+	response = gets.chomp
+end
+
+while show_menu != 'q'; end
