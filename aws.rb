@@ -20,6 +20,8 @@ def show_menu
 			puts 'bucket name: '
 			name = gets.chomp
 			puts 'error with bucket name, please try again' if !create_bucket(name)
+		when 'l'
+			$s3.buckets.each {|bucket| puts bucket.name}
 	end
 end
 
