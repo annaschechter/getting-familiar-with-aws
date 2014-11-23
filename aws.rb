@@ -22,7 +22,15 @@ def show_menu
 			puts 'error with bucket name, please try again' if !create_bucket(name)
 		when 'l'
 			$s3.buckets.each {|bucket| puts bucket.name}
+		when 'u'
+			print 'bucket name: '
+			name = gets.chomp
+			bucket = $s3.buckets[name]
+			print 'file name: '
+			file = gets.chomp
+			bucket.objects[file].write(Pathname.new(file))
 	end
+	response
 end
 
 while show_menu != 'q'; end
