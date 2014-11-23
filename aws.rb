@@ -29,6 +29,18 @@ def show_menu
 			print 'file name: '
 			file = gets.chomp
 			bucket.objects[file].write(Pathname.new(file))
+		when 'd'
+			print 'bucket_name: '
+			name = gets.chomp
+			bucket = $s3.buckets[name]
+			print 'file name: '
+			file = gets.chomp
+			obj = bucket.objects[file]
+			File.open(file, 'wb') do |f|
+				obj.read do |chunk|
+					f.write(chunk)
+				end
+			end
 	end
 	response
 end
